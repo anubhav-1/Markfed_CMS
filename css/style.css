@@ -311,3 +311,8 @@ However, delay the fade out process for 2.5 seconds */
 table {
     font-size: 100%;
 }
+
+#piechart{
+    max-width: 100%;
+    background-color: black;
+}

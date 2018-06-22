@@ -8,6 +8,7 @@ $connection->query($setstatus);
   ?>
 <html>
 <head>
+  <link rel="stylesheet" href="css/awesome/css/font-awesome.min.css">
   <script type="text/javascript" src="js/snack.js"></script>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <link rel="stylesheet" href="css/style.css">
@@ -20,6 +21,15 @@ $connection->query($setstatus);
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script src="http://bio.mq.edu.au/Tools/jquery/plugins/riklomas-quicksearch/jquery.quicksearch.js"></script>
+  <script>
+    if ( swipeDirection == 'left' ) {
+    window.location.href = 'graph.php';
+}
+  </script>
+
+
+
+
 
   <script>
    var TRange=null;
@@ -158,6 +168,9 @@ function openCity(evt, cityName) {
   <button class="tablinks" onclick="openCity(event, 'Lawyer')">Lawyer</button>
   <button class="tablinks" onclick="openCity(event, 'PetitionerRespondentInfo')">PetitionerRespondentInfo</button>
   <button class="tablinks" onclick="openCity(event, 'CaseUpdateLog')">CaseUpdateLog</button>
+  <button class="tablinks" onclick="openCity(event, 'graph')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+
+  
   <!-- <button class="tablinks" onclick="openCity(event, 'CaseUpdateLog')">S</button> -->
   
 </div>
@@ -659,6 +672,40 @@ if ($result->num_rows > 0) {
 
 ?>
 </table>  
+</div>
+
+<div id="graph" class="tabcontent context"> 
+
+
+<div id="piechart"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Work', 8],
+  ['Eat', 2],
+  ['TV', 4],
+  ['Gym', 2],
+  ['Sleep', 8]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'My Average Day', 'width':330, 'height':500};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+
 </div>
 </div>
 </div></div>
