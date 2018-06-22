@@ -97,7 +97,7 @@ function findString () {
 
 <br>
 <section>
-<nav class="navbar navbar-inverse" style="width: 100vmax;">
+<nav class="navbar navbar-inverse" style="width: 100%;">
   <div class="container">
     <!-- <div class="navbar-header">
       <a class="navbar-brand" href="#">WebSiteName</a>

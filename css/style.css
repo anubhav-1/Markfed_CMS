@@ -105,7 +105,7 @@ input{
 #content{
 	color: white;
 	margin:0 auto;
-	width: 100vmax;
+	width: 100%;
 	background-color: rgba(0,0,0,0.5);
 }
 
@@ -124,7 +124,7 @@ div.tab {
     overflow: hidden;
     margin: 0 auto;
     /*padding-left: 25%;*/
-    width: auto;
+    /*width: auto;*/
     background-color: rgba(0,0,0,0.0);
 }
 /* Style the tab */
@@ -132,14 +132,14 @@ div.tab {
 div.tab {
     overflow: hidden;
     margin: 0 auto;
-    width: auto;
+    /*width: auto;*/
     background-color: rgba(0,0,0,0.0);
 }
 }
 
 /* Style the buttons inside the tab */
 div.tab button {
-    width: 100%;
+    /*width: 100%;*/
     background-color: rgba(0,0,0,0.0);;
     border: none;
     outline: none;
@@ -305,4 +305,9 @@ However, delay the fade out process for 2.5 seconds */
 @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+}
+
+
+table {
+    font-size: 100%;
 }

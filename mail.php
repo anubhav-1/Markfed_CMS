@@ -34,7 +34,7 @@ if(isset($_SESSION['username']))
 </head>
 <body>
 	<section>
-<nav class="navbar navbar-inverse" style="width: 100vmax;">
+<nav class="navbar navbar-inverse" style="width: 100%;">
   <div class="container">
     
     <ul class="nav navbar-nav">

@@ -142,9 +142,9 @@ function openCity(evt, cityName) {
   </div>
 </nav></section>
 
-<div style="max-width: 100%;">
+<!-- <div style="max-width: 100%;"> -->
 <div class="container">
-  <div id="row">
+  <!-- <div id="row"> -->
 <div id="content">
 
 	<div id="col-lg-7 col-md-6 col-sm-10">
@@ -158,16 +158,19 @@ function openCity(evt, cityName) {
   <button class="tablinks" onclick="openCity(event, 'Lawyer')">Lawyer</button>
   <button class="tablinks" onclick="openCity(event, 'PetitionerRespondentInfo')">PetitionerRespondentInfo</button>
   <button class="tablinks" onclick="openCity(event, 'CaseUpdateLog')">CaseUpdateLog</button>
+  <!-- <button class="tablinks" onclick="openCity(event, 'CaseUpdateLog')">S</button> -->
   
 </div>
 </div>
-</div></div></div></div>
+</div></div>
+</div>
+<!-- </div> -->
 
 <div class="container" style="background-color: rgba(255,255,255,0.5); border-radius: 1%; box-shadow: 2px 2px 5px black;">
 <div id="row">
   <div id="col-lg-7 col-md-6 col-sm-10">
 
-<div id="CaseInfo" class="tabcontent context">
+<div id="CaseInfo" class="tabcontent content">
 
 
 
