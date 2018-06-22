@@ -15,6 +15,8 @@ $connection->query($setstatus);
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
 
 	<title>Admin Panel</title>
@@ -677,34 +679,144 @@ if ($result->num_rows > 0) {
 <div id="graph" class="tabcontent context"> 
 
 
-<div id="piechart"></div>
+<div class="container" style="padding-right: 5%;">
+  
+</style>
+    <canvas id="barChart"></canvas>
+    <hr>
+    <hr>
+    <canvas id="pieChart"></canvas>
+  </div>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    let myBarChart = document.getElementById('barChart').getContext('2d');
+    let myPieChart  = document.getElementById('pieChart').getContext('2d');
 
-<script type="text/javascript">
-// Load google charts
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
 
-// Draw the chart and set the chart values
-function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-  ['Task', 'Hours per Day'],
-  ['Work', 8],
-  ['Eat', 2],
-  ['TV', 4],
-  ['Gym', 2],
-  ['Sleep', 8]
-]);
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = '#777';
 
-  // Optional; add a title and set the width and height of the chart
-  var options = {'title':'My Average Day', 'width':330, 'height':500};
+    let caseCountBarChart = new Chart(myBarChart, {
+      type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data:{
+        labels:['Number of Cases', 'Reply Filed', 'Direction', 'Reply Not Filed'
+            , 'Contempt Cases'],
+        datasets:[{
+          label:'Count',
+          data:[
+            //// TODO: echo the values returned by the php variables
+            617594,
+            181045,
+            153060,
+            106519,
+            105162,
+            95072
+          ],
+          //backgroundColor:'green',
+          backgroundColor:[
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 99, 132, 0.6)'
+          ],
+          borderWidth:1,
+          borderColor:'#777',
+          hoverBorderWidth:2,
+          hoverBorderColor:'#000'
+        }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'Court Case Statistics',
+          fontSize:25
+        },
+        legend:{
+          display:false, //legend is irrelevant here
+          position:'right',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        layout:{
+          padding:{
+            left:0,
+            right:0,
+            bottom:0,
+            top:0
+          }
+        },
+        tooltips:{
+          enabled:true
+        }
+      }
+    });
 
-  // Display the chart inside the <div> element with id="piechart"
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  chart.draw(data, options);
-}
-</script>
+// PI chart starts here
+    let caseCountPieChart = new Chart(myPieChart, {
+      type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data:{
+        labels:['Number of Cases', 'Reply Filed', 'Direction', 'Reply Not Filed'
+            , 'Contempt Cases'],
+        datasets:[{
+          label:'Count',
+          data:[
+            //// TODO: echo the values returned by the php variables
+            617594,
+            181045,
+            153060,
+            106519,
+            105162,
+            95072
+          ],
+          //backgroundColor:'green',
+          backgroundColor:[
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 99, 132, 0.6)'
+          ],
+          borderWidth:1,
+          borderColor:'#777',
+          hoverBorderWidth:2,
+          hoverBorderColor:'#000'
+        }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'Court Case Statistics',
+          fontSize:25
+        },
+        legend:{
+          display:true, //legend is irrelevant here
+          position:'right',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        layout:{
+          padding:{
+            left:0,
+            right:0,
+            bottom:0,
+            top:0
+          }
+        },
+        tooltips:{
+          enabled:true
+        }
+      }
+    });
+  </script>
 
 </div>
 </div>

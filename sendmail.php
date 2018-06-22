@@ -56,6 +56,8 @@ $body =$_POST['body'];
 
 
 
+
+
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
     //Server settings
@@ -63,8 +65,8 @@ try {
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'aditya119sharma@gmail.com';                 // SMTP username
-    $mail->Password = 'rtauouydzcsgilgc';                           // SMTP password
+    $mail->Username = 'legal@markfedpunjab.com';                 // SMTP username
+    $mail->Password = '14982614345';                           // SMTP password
     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;                                    // TCP port to connect to
 
