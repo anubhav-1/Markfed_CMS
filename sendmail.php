@@ -24,7 +24,7 @@ if ($_FILES["attachment"]["size"] == 0) {
     echo "Sorry, your file is surprisingly unnecessarily small.";
     $uploadOk = 0;
 }
-// Check file size
+//Check file size
 if ($_FILES["attachment"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
@@ -108,7 +108,7 @@ try {
     $_SESSION['email_send_status'] = "error_sending_email";
 }
 
- // header("location:mail.php");
+ header("location:mail.php");
  echo '<script type="text/javascript">
            window.location = "mail.php";
       </script>';
