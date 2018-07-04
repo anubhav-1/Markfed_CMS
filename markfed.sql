@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2018 at 02:46 PM
--- Server version: 10.1.29-MariaDB
--- PHP Version: 7.1.12
+-- Generation Time: Jun 23, 2018 at 01:33 PM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -295,9 +295,9 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`username`, `password`, `full_name`, `contact`, `email_add`, `email_password`, `location`, `user_group`, `status_web`, `status_app`) VALUES
-('', '', 'a  s', '+919988214333', 'aditya119sharma@gmail.com', 'rtauouydzcsgilgc', 'ml', 'Administrator', 'OFFLINE', 'OFFLINE'),
-('aditya', 'ccet', 'a s', '+919988214333', '234', '', 'da', 'MD', 'ONLINE', 'OFFLINE'),
-('akhil', 'ccet', 'a s', '+919478204818', '3da', '', 'cjb', 'Operator', 'OFFLINE', 'OFFLINE');
+('', '', 'a  s', '+919988214333', 'legal@markfedpunjab.com', '14982614345', 'ml', 'Administrator', 'OFFLINE', 'OFFLINE'),
+('aditya', 'ccet', 'a s', '+919988214333', '234', '', 'da', 'MD', 'OFFLINE', 'OFFLINE'),
+('akhil', 'ccet', 'a s', '+919478204818', 'legal@markfedpunjab.com', '14982614345', 'cjb', 'Operator', 'ONLINE', 'OFFLINE');
 
 --
 -- Indexes for dumped tables

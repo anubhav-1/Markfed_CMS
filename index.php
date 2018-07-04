@@ -15,6 +15,10 @@ if (isset($_POST['username']) and isset($_POST['password'])){
 //3.1.2 If the posted values are equal to the database values, then session will be created for the user.
     if ($count == 1){
         $_SESSION['username'] = $username;
+        $row = $result -> fetch_assoc();
+        $_SESSION['email_add'] = $row["email_add"];
+        $_SESSION['email_password'] = $row["email_password"];
+        $_SESSION['session_send_status'] = "";
     }else{
 //3.1.3 If the login credentials doesn't match, he will be shown with an error message.
         $fmsg = "Invalid Login Credentials.";

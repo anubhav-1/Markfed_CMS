@@ -3,31 +3,32 @@
 session_start();
 if(isset($_SESSION['username']))
 {
-  ?>
+?>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <link rel="stylesheet" href="css/style.css">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="jquery.richtext.js"></script>
 
 	<title>Admin Panel</title>
-  
-  
 
-  
-  
 
-	
+
+
+
+
+
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="richtext.min.css">
@@ -36,10 +37,10 @@ if(isset($_SESSION['username']))
 	<section>
 <nav class="navbar navbar-inverse" style="width: 100%;">
   <div class="container">
-    
+
     <ul class="nav navbar-nav">
       <li><a href="index.php">Home</a></li>
-      
+
       <li><a href="#">Filter Based Search</a></li>
       <li><a href="upcoming.php">Upcoming Events</a></li>
       <li><a href="userinfo.php">User Info</a></li>
@@ -56,13 +57,13 @@ if(isset($_SESSION['username']))
     </div>
 
      <ul class="nav navbar-nav navbar-right">
-      
+
       <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
 </nav></section>
 
-		
+
 <div class="container">
 <form style="margin-top: 7%;" action="sendmail.php" method="POST" enctype="multipart/form-data">
   <div class="form-group">
@@ -80,12 +81,12 @@ if(isset($_SESSION['username']))
     <label for="exampleFormControlInput1">Subject:</label>
     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Email Subject" name="subject">
   </div>
-  
+
   <div class="form-group page-wrapper box-content">
     <label for="exampleFormControlTextarea1">Body:</label>
     <textarea class="form-control content" id="exampleFormControlTextarea1" rows="5" name="body" placeholder="Email Body"></textarea>
   </div>
-          
+
     <script>
     $('.content').richText();
     </script>
@@ -103,6 +104,21 @@ if(isset($_SESSION['username']))
   <button type="submit" class="btn btn-default" id="myButton">SEND</button>
 </form>
 </div>
+
+<script>
+  let email_send_status = '<?php echo $_SESSION['email_send_status']?>';
+  console.log(email_send_status);
+  if (email_send_status.length === 0){
+    //do nothing
+  }else {
+    if(email_send_status === "sent"){
+      alert("Email was sent!");
+    }else if (email_send_status === "error_sending_email") {
+      alert("Oops...There was an error sending the email...");
+    }
+  }
+</script>
+
 </body>
 </html>
 

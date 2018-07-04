@@ -15,7 +15,7 @@ $connection->query($setstatus);
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
 
@@ -23,11 +23,7 @@ $connection->query($setstatus);
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script src="http://bio.mq.edu.au/Tools/jquery/plugins/riklomas-quicksearch/jquery.quicksearch.js"></script>
-  <script>
-    if ( swipeDirection == 'left' ) {
-    window.location.href = 'graph.php';
-}
-  </script>
+  
 
 
 
@@ -73,12 +69,12 @@ function findString () {
  return;
 }
   </script>
-  
 
-	
+
+
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
+
 
 
 
@@ -118,7 +114,7 @@ function openCity(evt, cityName) {
 
 </head>
 <body onload="myFunction();">
-	
+
 
 
 
@@ -131,7 +127,7 @@ function openCity(evt, cityName) {
     </div> -->
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
-      
+
       <li><a href="filter.php">Filter Based Search</a></li>
       <li><a href="upcoming.php">Upcoming Events</a></li>
       <li><a href="userinfo.php">User Info</a></li>
@@ -148,7 +144,7 @@ function openCity(evt, cityName) {
     </div>
 
      <ul class="nav navbar-nav navbar-right">
-      
+
       <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
@@ -160,11 +156,11 @@ function openCity(evt, cityName) {
 <div id="content">
 
 	<div id="col-lg-7 col-md-6 col-sm-10">
-    
+
 <div class="tab">
   <button class="tablinks active" onclick="openCity(event, 'CaseInfo')" id="defaultOpen" active>CaseInfo</button>
   <!-- <button class="tablinks" onclick="openCity(event, 'CaseProceeding')">CaseProceeding</button> -->
-  
+
   <button class="tablinks" onclick="openCity(event, 'DateInfo')">DateInfo</button>
   <button class="tablinks" onclick="openCity(event, 'LatestProceeding')">LatestProceeding</button>
   <button class="tablinks" onclick="openCity(event, 'Lawyer')">Lawyer</button>
@@ -172,9 +168,9 @@ function openCity(evt, cityName) {
   <button class="tablinks" onclick="openCity(event, 'CaseUpdateLog')">CaseUpdateLog</button>
   <button class="tablinks" onclick="openCity(event, 'graph')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
 
-  
+
   <!-- <button class="tablinks" onclick="openCity(event, 'CaseUpdateLog')">S</button> -->
-  
+
 </div>
 </div>
 </div></div>
@@ -199,18 +195,18 @@ function openCity(evt, cityName) {
 // // Check connection
 // if ($connection->connect_error) {
 //     die("Connection failed: " . $connection->connect_error);
-// } 
+// }
 
  $sql = "SELECT * FROM `case_info`";
  $result = $connection->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-  
+
 
   ?>
   <table style="margin: 0 auto; color: black; margin-bottom: 2%;" border="1" bordercolor="black">
-        
+
         <tr style="padding: 2vmax; margin:2vmax;">
           <th style="padding-left: 1vmax; padding-right: 1vmax;">File Number</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Case Number</th>
@@ -219,17 +215,17 @@ if ($result->num_rows > 0) {
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Court Name</th>
           <th style="padding-left:  1vmax; padding-right: 1vmax;">Lawyer</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Location</th>
-          
+
         </tr>
 
 
-      
+
       <?php
       $count=1;
     while($row = $result->fetch_assoc()) {
 ?>
         <tr style="padding: 1%; margin:1%;">
-          
+
          <td style="padding:1%;"> <?php echo "<a href=\"report.php?fileNumber=".$row['file_number']."\" target=\"_blank\">".$row['file_number']."</a>";?> </td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["case_number"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["year"]; ?></td>
@@ -248,8 +244,8 @@ if ($result->num_rows > 0) {
 ?>
 </table>
 
- 
-  
+
+
 </div>
 
 
@@ -269,43 +265,43 @@ if ($result->num_rows > 0) {
 // // Check connection
 // if ($connection->connect_error) {
 //     die("Connection failed: " . $connection->connect_error);
-// } 
+// }
 
  $sql = "SELECT * FROM `case_update_log` order by `case_update_log`.`time` desc";
 $result = $connection->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-  
+
 
   ?>
   <table style="margin: 0 auto; color: black; margin-bottom: 2%;" border="1" bordercolor="black">
-        
+
         <tr style="padding: 2vmax; margin:2vmax;">
         	<th style="padding-left: 1vmax; padding-right: 1vmax;">Time</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">File Number</th>
-          
+
           <th style="padding-left: 1vmax; padding-right: 1vmax;">User Name</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">User Group</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Action</th>
-          
+
         </tr>
 
 
-      
+
       <?php
       $count=1;
     while($row = $result->fetch_assoc()) {
 ?>
         <tr style="padding: 1%; margin:1%;">
         	<td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["time"]; ?></td>
-          
+
           <td style="padding:1%;"> <?php echo "<a href=\"report.php?fileNumber=".$row['file_number']."\" target=\"_blank\">".$row['file_number']."</a>";?> </td>
-          
+
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["username"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["user_group"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["action"]; ?></td>
-         
+
         </tr>
         <?php
         $count++;
@@ -317,8 +313,8 @@ if ($result->num_rows > 0) {
 ?>
 </table>
 
- 
-  
+
+
 </div>
 
 
@@ -339,48 +335,48 @@ if ($result->num_rows > 0) {
 // // Check connection
 // if ($connection->connect_error) {
 //     die("Connection failed: " . $connection->connect_error);
-// } 
+// }
 
  $sql = "SELECT * FROM `latest_proceeding`";
 $result = $connection->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-  
+
 
   ?>
   <table style="margin: 0 auto; color: black; margin-bottom: 2%;" border="1" bordercolor="black">
-        
+
         <tr style="padding: 2vmax; margin:2vmax;">
           <th style="padding-left: 1vmax; padding-right: 1vmax;">File Number</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Proceeding Number</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Proceeding Date</th>
-          
+
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Decision</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Description</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Next Hearing On</th>
-          
-          
+
+
         </tr>
 
 
-      
+
       <?php
       $count=1;
     while($row = $result->fetch_assoc()) {
 ?>
         <tr style="padding: 1%; margin:1%;">
           <td style="padding:1%;"> <?php echo "<a href=\"report.php?fileNumber=".$row['file_number']."\" target=\"_blank\">".$row['file_number']."</a>";?> </td>
-          
+
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["proceeding_number"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["proceeding_date"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["decision"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["description"]; ?></td>
 
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["next_hearing_on"]; ?></td>
-         
-          
-         
+
+
+
         </tr>
         <?php
         $count++;
@@ -392,8 +388,8 @@ if ($result->num_rows > 0) {
 ?>
 </table>
 
- 
-  
+
+
 </div>
 
 
@@ -411,30 +407,30 @@ if ($result->num_rows > 0) {
 // // Check connection
 // if ($connection->connect_error) {
 //     die("Connection failed: " . $connection->connect_error);
-// } 
+// }
 
  $sql = "SELECT * FROM `date_info`";
 $result = $connection->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-  
+
 
   ?>
   <table style="margin: 0 auto; color: black; margin-bottom: 2%;" border="1" bordercolor="black">
-        
+
         <tr style="padding: 2vmax; margin:2vmax;">
           <th style="padding-left: 1vmax; padding-right: 1vmax;">File Number</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Case Filed On</th>
-          
+
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Notice Recieved On</th>
-          
+
           <th style="padding-left: 1vmax; padding-right: 1vmax;">First Hearing On</th>
-          
+
         </tr>
 
 
-      
+
       <?php
       $count=1;
     while($row = $result->fetch_assoc()) {
@@ -442,13 +438,13 @@ if ($result->num_rows > 0) {
         <tr style="padding: 1%; margin:1%;">
           <td style="padding:1%;"> <?php echo "<a href=\"report.php?fileNumber=".$row['file_number']."\" target=\"_blank\">".$row['file_number']."</a>";?> </td>
 
-          
+
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["case_filed_on"]; ?></td>
-          
+
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["notice_received_on"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["first_hearing_on"]; ?></td>
-          
-         
+
+
         </tr>
         <?php
         $count++;
@@ -460,8 +456,8 @@ if ($result->num_rows > 0) {
 ?>
 </table>
 
- 
-  
+
+
 </div>
 
 
@@ -480,45 +476,45 @@ if ($result->num_rows > 0) {
 // // Check connection
 // if ($connection->connect_error) {
 //     die("Connection failed: " . $connection->connect_error);
-// } 
+// }
 
  $sql = "SELECT * FROM `latest_proceeding`";
 $result = $connection->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-  
+
 
   ?>
   <table style="margin: 0 auto; color: black; margin-bottom: 2%;" border="1" bordercolor="black">
-        
+
         <tr style="padding: 2vmax; margin:2vmax;">
           <th style="padding-left: 1vmax; padding-right: 1vmax;">File Number</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Proceeding Number</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Proceeding Date</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Decision</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Next Hearing On</th>
-          
-          
-          
+
+
+
         </tr>
 
 
-      
+
       <?php
       $count=1;
     while($row = $result->fetch_assoc()) {
 ?>
         <tr style="padding: 1%; margin:1%;">
          <td style="padding:1%;"> <?php echo "<a href=\"report.php?fileNumber=".$row['file_number']."\" target=\"_blank\">".$row['file_number']."</a>";?> </td>
-          
+
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["proceeding_number"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["proceeding_date"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["decision"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["next_hearing_on"]; ?></td>
-          
-          
-         
+
+
+
         </tr>
         <?php
         $count++;
@@ -530,8 +526,8 @@ if ($result->num_rows > 0) {
 ?>
 </table>
 
- 
-  
+
+
 </div>
 
 
@@ -550,39 +546,39 @@ if ($result->num_rows > 0) {
 // // Check connection
 // if ($connection->connect_error) {
 //     die("Connection failed: " . $connection->connect_error);
-// } 
+// }
 
  $sql = "SELECT * FROM `lawyer`";
 $result = $connection->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-  
+
 
   ?>
   <table style="margin: 0 auto; color: black; margin-bottom: 2%;" border="1" bordercolor="black">
-        
+
         <tr style="padding: 2vmax; margin:2vmax;">
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Lawyer Name</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Email</th>
-          
-          
-          
+
+
+
         </tr>
 
 
-      
+
       <?php
       $count=1;
     while($row = $result->fetch_assoc()) {
 ?>
         <tr style="padding: 1%; margin:1%;">
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["lawyer_name"]; ?></td>
-          
+
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["email"]; ?></td>
-          
-          
-         
+
+
+
         </tr>
         <?php
         $count++;
@@ -594,8 +590,8 @@ if ($result->num_rows > 0) {
 ?>
 </table>
 
- 
-  
+
+
 </div>
 
 
@@ -617,53 +613,53 @@ if ($result->num_rows > 0) {
 // // Check connection
 // if ($connection->connect_error) {
 //     die("Connection failed: " . $connection->connect_error);
-// } 
+// }
 
  $sql = "SELECT * FROM `petitioner_respondent_info`";
 $result = $connection->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-  
+
 
   ?>
   <table style="margin: 0 auto; color: black; margin-bottom: 2%;" border="1" bordercolor="black">
-        
+
         <tr style="padding: 2vmax; margin:2vmax;">
           <th style="padding-left: 1vmax; padding-right: 1vmax;">File Number</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Petitioner's Name</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Petitioner's Email</th>
-          
+
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Petitioner's Address</th>
-          
+
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Respondent's Name</th>
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Respondent's Email</th>
-          
+
           <th style="padding-left: 1vmax; padding-right: 1vmax;">Respondent's Address</th>
-          
-          
+
+
         </tr>
 
 
-      
+
       <?php
       $count=1;
     while($row = $result->fetch_assoc()) {
 ?>
         <tr style="padding: 1%; margin:1%;">
           <td style="padding:1%;"> <?php echo "<a href=\"report.php?fileNumber=".$row['file_number']."\" target=\"_blank\">".$row['file_number']."</a>";?> </td>
-          
+
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["petitioner_name"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["petitioner_email"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["petitioner_address"]; ?></td>
-         
+
 
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["respondent_name"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["respondent_email"]; ?></td>
           <td style="padding-left: 2vmax; padding-right: 1vmax;"><?php echo $row["respondent_address"]; ?></td>
-          
-          
-         
+
+
+
         </tr>
         <?php
         $count++;
@@ -673,25 +669,45 @@ if ($result->num_rows > 0) {
 }
 
 ?>
-</table>  
+</table>
 </div>
 
-<div id="graph" class="tabcontent context"> 
+<div id="graph" class="tabcontent context">
+  <?php
+  include 'connection.php';
 
+  $totalCasesSQL = "SELECT count(file_number) as number_of_cases from
+  `case_info`";
 
-<div class="container" style="padding-right: 5%;">
-  
-</style>
+  $totalPendingSQL = "SELECT count(file_number) as number_of_cases from
+  `latest_proceeding` WHERE decision = 'PENDING' OR decision = 'ADJOURNMENT'";
+
+  $totalDisposedSQL = "SELECT count(file_number) as number_of_cases from
+  `latest_proceeding` WHERE decision = 'FINAL JUDGEMENT'";
+
+  $totalCasesResult = $connection->query($totalCasesSQL);
+  //echo $totalCasesResult->fetch_assoc()['number_of_cases'];
+
+  $totalPendingResult = $connection->query($totalPendingSQL);
+  //echo $totalPendingResult->fetch_assoc()['number_of_cases'];
+
+  $totalDisposedResult = $connection->query($totalDisposedSQL);
+  //echo $totalDisposedResult->fetch_assoc()['number_of_cases'];
+
+  ?>
+<div class="container" class="chart-container" style="padding-right: 5%;">
     <canvas id="barChart"></canvas>
-    <hr>
     <hr>
     <canvas id="pieChart"></canvas>
   </div>
-
 <script>
     let myBarChart = document.getElementById('barChart').getContext('2d');
     let myPieChart  = document.getElementById('pieChart').getContext('2d');
 
+    let data_array = [];
+    data_array.push(<?php echo $totalCasesResult->fetch_assoc()['number_of_cases']?>);
+    data_array.push(<?php echo $totalPendingResult->fetch_assoc()['number_of_cases']?>);
+    data_array.push(<?php echo $totalDisposedResult->fetch_assoc()['number_of_cases']?>);
 
     // Global Options
     Chart.defaults.global.defaultFontFamily = 'Lato';
@@ -701,19 +717,11 @@ if ($result->num_rows > 0) {
     let caseCountBarChart = new Chart(myBarChart, {
       type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
       data:{
-        labels:['Number of Cases', 'Reply Filed', 'Direction', 'Reply Not Filed'
-            , 'Contempt Cases'],
+        labels:['Total Cases', 'Total Pending',
+        'Total Disposed Off'],
         datasets:[{
           label:'Count',
-          data:[
-            //// TODO: echo the values returned by the php variables
-            617594,
-            181045,
-            153060,
-            106519,
-            105162,
-            95072
-          ],
+          data: data_array,
           //backgroundColor:'green',
           backgroundColor:[
             'rgba(255, 99, 132, 0.6)',
@@ -730,6 +738,8 @@ if ($result->num_rows > 0) {
           hoverBorderColor:'#000'
         }]
       },
+      responsive:true,
+      maintainAspectRatio: false,
       options:{
         title:{
           display:true,
@@ -761,19 +771,11 @@ if ($result->num_rows > 0) {
     let caseCountPieChart = new Chart(myPieChart, {
       type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
       data:{
-        labels:['Number of Cases', 'Reply Filed', 'Direction', 'Reply Not Filed'
-            , 'Contempt Cases'],
+        labels:['Total Cases Added', 'Total Pending Cases',
+        'Total Disposed Off Cases'],
         datasets:[{
           label:'Count',
-          data:[
-            //// TODO: echo the values returned by the php variables
-            617594,
-            181045,
-            153060,
-            106519,
-            105162,
-            95072
-          ],
+          data: data_array,
           //backgroundColor:'green',
           backgroundColor:[
             'rgba(255, 99, 132, 0.6)',
@@ -816,9 +818,35 @@ if ($result->num_rows > 0) {
         }
       }
     });
-  </script>
 
+    var resizeId;
+        $(window).resize(function() {
+            clearTimeout(resizeId);
+            resizeId = setTimeout(afterResizing, 100);
+        });
+
+
+        function afterResizing(){
+          //barChart, pieChart
+            var canvasheight=document.getElementById("barChart").height;
+            if(canvasheight <=250)
+            {
+                window.caseCountPieChart.options.legend.display=false;
+                window.caseCountBarChart.options.legend.display=false;
+            }
+            else
+            {
+                window.caseCountPieChart.options.legend.display=true;
+                window.caseCountBarChart.options.legend.display=true;
+            }
+            window.caseCountPieChart.update();
+            window.caseCountBarChart.update();
+
+        }
+</script>
 </div>
+<!--div for graph ends here -->
+
 </div>
 </div></div>
 </div>
@@ -847,7 +875,7 @@ $sql = "SELECT file_number, next_hearing_on, lawyer, proceeding_number FROM late
 $result = $connection->query($sql);
 
 if ($result->num_rows > 0) {
-  
+
   while($row = $result->fetch_assoc()){
 
 ?>

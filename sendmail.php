@@ -1,8 +1,12 @@
 <?php
+session_start();
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+//echo $_SESSION['email_add'] . $_SESSION['email_password'];
+
 
 //Load composer's autoloader
 require 'vendor/autoload.php';
@@ -32,7 +36,7 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["attachment"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["attachment"]["name"]). " has been uploaded.";
-        $finalLink = $target_file; 
+        $finalLink = $target_file;
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
@@ -52,35 +56,32 @@ $subject = $_POST['subject'];
 // $body = nl2br(str_replace(' ', '&nbsp;', $result));
 
 $body =$_POST['body'];
-
-
-
-
-
-
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+
+echo $_SESSION['email_add'];
+echo $_SESSION['email_password'];
 try {
     //Server settings
     $mail->SMTPDebug = 2;                                 // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'legal@markfedpunjab.com';                 // SMTP username
-    $mail->Password = '14982614345';                           // SMTP password
+    $mail->Username = $_SESSION['email_add'];              // 'legal@markfedpunjab.com'; SMTP username
+    $mail->Password = $_SESSION['email_password'];         // '14982614345';  SMTP password
     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                                    // TCP port to connect to
+    $mail->Port = 587;                                   // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('aditya119sharma@gmial.com', 'Aditya');
+    $mail->setFrom($_SESSION['email_add']);
     //Add a recipient/recipients
-    
-    for ($i=0; $i < $emailCount; $i++) { 
+
+    for ($i=0; $i < $emailCount; $i++) {
     	$mail->addAddress($emailList[$i]);
     }
 
     if(!empty($_POST['cc'])){
     //Add a recipient/recipients CC
-    for ($i=0; $i < $ccEmailCount; $i++) { 
+    for ($i=0; $i < $ccEmailCount; $i++) {
     	$mail->addCC($ccEmailList[$i]);
     }
 }
@@ -90,7 +91,7 @@ try {
         $mail->addAttachment($finalLink);
     }
 
-    $mail->addReplyTo('akhil.infinite@live.in', 'Akhil');
+    $mail->addReplyTo($_SESSION['email_add']);
 
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
@@ -99,12 +100,16 @@ try {
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo 'Message has been sent';
+    'Message has been sent';
+    $_SESSION['email_send_status'] = "sent";
 } catch (Exception $e) {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
+    $_SESSION['email_send_status'] = "error_sending_email";
 }
 
-
- header("location:mail.php");
+ // header("location:mail.php");
+ echo '<script type="text/javascript">
+           window.location = "mail.php";
+      </script>';
 ?>
